@@ -1,11 +1,13 @@
-devbox
+devenv
 ======
 
-Currently just a Vagrant file that covers the base needs of software development at Lymington Precision Engineers.
+Vagrant based development environment currently comprising the following VMs:
 
-## TODO
+## dev
 
-* Populate the Oracle Docker with an empty('ish) IFS database.
-* Add some dotfiles based on my current setup.
-* Add ohmygems for Ruby gem management?
-* More Dockers or Dokku?
+Configured as a sensible default software development environment.
+
+## staging
+
+A staging server against which software deployment can be tested.
+

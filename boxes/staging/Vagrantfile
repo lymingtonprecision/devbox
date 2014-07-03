@@ -1,0 +1,9 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require File.join(File.dirname(__FILE__), 'config.rb')
+
+Vagrant::configure("2") do |config|
+  config.vm.define "staging", &Boxes::Staging.configure
+end
+
