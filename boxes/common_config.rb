@@ -4,8 +4,10 @@ module Boxes
       config.vm.box = 'phusion/ubuntu-14.04-amd64'
 
       config.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-        vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
+        vb.customize ["modifyvm", :id,
+                      "--natdnshostresolver1", "on",
+                      "--ostype", "Ubuntu_64",
+                      "--groups", "/Vagrant"]
       end
     }
   end
