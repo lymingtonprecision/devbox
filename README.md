@@ -18,7 +18,6 @@ Pre-Requisites
  2. Vagrant and plugins:
 
     * `vagrant-librarian-chef` or `vagrant-librarian-chef-nochef`
-    * `vagrant-hostmanager`
 
 How To Use
 ==========
@@ -26,4 +25,8 @@ How To Use
  1. Open a command prompt or (preferably) PowerShell.
  2. Run `vagrant up` from the directory containing this file.
  3. SSH into the VMs and play.
+
+For name resolution of the VMs on your local machine, including wildcard
+resolution against the staging VM, add `10.118.109.10` to your DNS server
+list.
 

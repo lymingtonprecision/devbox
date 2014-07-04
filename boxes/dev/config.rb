@@ -7,10 +7,35 @@ module Boxes; module Dev
 
       config.vm.hostname = 'dev.vm.lymingtonprecision.co.uk'
       config.vm.network "private_network", ip: "10.118.109.10"
-      config.hostmanager.aliases = %w(dev.vm dev)
 
       config.vm.synced_folder "m:\\projects", "/projects",
         mount_options: ["dmode=775,fmode=664"]
+
+      config.vm.provision :chef_solo do |chef|
+        Boxes.configure_chef.call chef
+
+        chef.add_recipe 'dnsmasq::dns'
+
+        host_aliases = lambda{|host|
+          ['.vm.lymingtonprecision.co.uk', '.vm', ''].map {|s| "#{host}#{s}"}
+        }
+
+        wildcard_addresses = lambda{|host, ip|
+          host_aliases.call(host).map {|h| "/.#{h}/#{ip}"}
+        }
+
+        chef.json.merge!(
+          dnsmasq: {
+            enable_dhcp: false,
+            dns: {
+              address: [
+                wildcard_addresses.call('dev', '10.118.109.10'),
+                wildcard_addresses.call('staging', '10.118.109.20')
+              ].flatten
+            }
+          }
+        )
+      end
 
       # Install an ssh private key file usable for deploying to staging
       config.vm.provision :file,

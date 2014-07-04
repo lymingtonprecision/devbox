@@ -17,7 +17,6 @@ module Boxes; module Staging
 
       config.vm.hostname = 'staging.vm.lymingtonprecision.co.uk'
       config.vm.network "private_network", ip: "10.118.109.20"
-      config.hostmanager.aliases = %w(staging.vm staging)
 
       config.vm.provision "chef_solo" do |chef|
         Boxes.configure_chef.call chef
@@ -27,7 +26,7 @@ module Boxes; module Staging
         chef.add_recipe 'rabbitmq::default'
         chef.add_recipe 'dokku::bootstrap'
 
-        chef.json = {
+        chef.json.merge!(
           docker: {
             package: {
               repo_url: 'https://get.docker.io/ubuntu'
@@ -37,7 +36,7 @@ module Boxes; module Staging
             git_revision: 'v0.2.3',
             ssh_keys: dokku_keys
           }
-        }
+        )
       end
     }
   end

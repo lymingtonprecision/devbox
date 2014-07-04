@@ -15,16 +15,20 @@ module Boxes
           File.dirname(__FILE__), '..'
         )
       end
-
-      if Vagrant.has_plugin? 'vagrant-hostmanager'
-        config.hostmanager.enabled = true
-        config.hostmanager.include_offline = true
-      end
     }
   end
 
   def self.configure_chef
-    lambda {|chef| }
+    lambda {|chef|
+      chef.add_recipe 'resolver::default'
+
+      chef.json = {
+        resolver: {
+          search: 'vm.lymingtonprecision.co.uk lymingtonprecision.co.uk',
+          nameservers: %w(10.118.109.10 192.168.108.1 192.168.108.2)
+        }
+      }
+    }
   end
 end
 
