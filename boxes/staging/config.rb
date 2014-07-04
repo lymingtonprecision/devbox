@@ -7,6 +7,7 @@ module Boxes; module Staging
 
       config.vm.hostname = 'staging.vm.lymingtonprecision.co.uk'
       config.vm.network "private_network", ip: "10.118.109.20"
+      config.hostmanager.aliases = %w(staging.vm staging)
 
       config.vm.provision "chef_solo" do |chef|
         Boxes.configure_chef.call chef

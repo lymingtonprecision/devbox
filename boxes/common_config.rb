@@ -15,6 +15,11 @@ module Boxes
           File.dirname(__FILE__), '..'
         )
       end
+
+      if Vagrant.has_plugin? 'vagrant-hostmanager'
+        config.hostmanager.enabled = true
+        config.hostmanager.include_offline = true
+      end
     }
   end
 

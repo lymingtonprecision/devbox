@@ -18,6 +18,7 @@ Pre-Requisites
  2. Vagrant and plugins:
 
     * `vagrant-librarian-chef` or `vagrant-librarian-chef-nochef`
+    * `vagrant-hostmanager`
 
 How To Use
 ==========

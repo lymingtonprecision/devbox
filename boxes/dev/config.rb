@@ -7,6 +7,7 @@ module Boxes; module Dev
 
       config.vm.hostname = 'dev.vm.lymingtonprecision.co.uk'
       config.vm.network "private_network", ip: "10.118.109.10"
+      config.hostmanager.aliases = %w(dev.vm dev)
 
       config.vm.synced_folder "m:\\projects", "/projects",
         mount_options: ["dmode=775,fmode=664"]
