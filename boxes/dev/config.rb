@@ -12,6 +12,15 @@ module Boxes; module Dev
       config.vm.synced_folder "m:\\projects", "/projects",
         mount_options: ["dmode=775,fmode=664"]
 
+      # Install an ssh private key file usable for deploying to staging
+      config.vm.provision :file,
+        source: File.join(File.dirname(__FILE__), 'files', 'id_rsa'),
+        destination: '~/.ssh/id_rsa'
+
+      config.vm.provision :shell, inline: <<-SCRIPT
+        chmod 0600 ~/.ssh/id_rsa
+      SCRIPT
+
       # Install some baseline package dependencies
       config.vm.provision :shell, inline: <<-SCRIPT
         apt-get install software-properties-common python-software-properties

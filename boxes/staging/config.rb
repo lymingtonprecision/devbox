@@ -1,6 +1,16 @@
 require File.join(File.dirname(__FILE__), '..', 'common_config.rb')
 
 module Boxes; module Staging
+  def self.dokku_keys
+    dev_key_path = File.join(
+      File.dirname(__FILE__), '..', 'dev', 'files', 'id_rsa.pub'
+    )
+
+    {
+      vagrant: File.read(dev_key_path)
+    }
+  end
+
   def self.configure
     lambda {|config|
       Boxes.configure.call config
@@ -24,7 +34,8 @@ module Boxes; module Staging
             }
           },
           dokku: {
-            git_revision: 'v0.2.3'
+            git_revision: 'v0.2.3',
+            ssh_keys: dokku_keys
           }
         }
       end
