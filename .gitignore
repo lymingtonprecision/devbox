@@ -30,3 +30,9 @@ Session.vim
 .netrwhist
 *~
 
+
+### librarian-chef ###
+tmp/
+cookbooks/
+Cheffile.lock
+

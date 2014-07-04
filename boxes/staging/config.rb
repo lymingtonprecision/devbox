@@ -7,6 +7,26 @@ module Boxes; module Staging
 
       config.vm.hostname = 'staging.vm.lymingtonprecision.co.uk'
       config.vm.network "private_network", ip: "10.118.109.20"
+
+      config.vm.provision "chef_solo" do |chef|
+        Boxes.configure_chef.call chef
+
+        chef.add_recipe 'redisio::install'
+        chef.add_recipe 'redisio::enable'
+        chef.add_recipe 'rabbitmq::default'
+        chef.add_recipe 'dokku::bootstrap'
+
+        chef.json = {
+          docker: {
+            package: {
+              repo_url: 'https://get.docker.io/ubuntu'
+            }
+          },
+          dokku: {
+            git_revision: 'v0.2.3'
+          }
+        }
+      end
     }
   end
 end; end

@@ -9,7 +9,17 @@ module Boxes
                       "--ostype", "Ubuntu_64",
                       "--groups", "/Vagrant"]
       end
+
+      if Vagrant.has_plugin? 'vagrant-librarian-chef'
+        config.librarian_chef.cheffile_dir = File.join(
+          File.dirname(__FILE__), '..'
+        )
+      end
     }
+  end
+
+  def self.configure_chef
+    lambda {|chef| }
   end
 end
 

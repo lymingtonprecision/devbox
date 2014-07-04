@@ -15,13 +15,14 @@ Pre-Requisites
 ==============
 
  1. VirtualBox
- 2. Vagrant
+ 2. Vagrant and plugins:
+
+    * `vagrant-librarian-chef` or `vagrant-librarian-chef-nochef`
 
 How To Use
 ==========
 
  1. Open a command prompt or (preferably) PowerShell.
- 2. Change to the directory containing this file.
- 3. Run `vagrant up`
- 4. SSH into the VMs and play.
+ 2. Run `vagrant up` from the directory containing this file.
+ 3. SSH into the VMs and play.
 

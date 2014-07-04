@@ -1,0 +1,6 @@
+site "http://community.opscode.com/api/v1"
+
+cookbook 'redisio'
+cookbook 'rabbitmq'
+cookbook 'dokku', github: 'fgrehm/chef-dokku'
+
