@@ -49,11 +49,8 @@ module Boxes; module Dev
       # Install some baseline package dependencies
       config.vm.provision :shell, inline: <<-SCRIPT
         apt-get install software-properties-common python-software-properties
-        add-apt-repository -y ppa:rquillo/ansible
         apt-get update
-        apt-get -y install ansible git libssl-dev openjdk-7-jdk
-        mv /etc/ansible/hosts /etc/ansible/hosts.example
-        echo 'localhost ansible_connection=local' > /etc/ansible/hosts
+        apt-get -y install git libssl-dev openjdk-7-jdk
       SCRIPT
 
       # Configure the Ruby environment
