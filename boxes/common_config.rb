@@ -20,12 +20,12 @@ module Boxes
 
   def self.configure_chef
     lambda {|chef|
-      chef.add_recipe 'resolver::default'
+      chef.add_recipe 'resolvconf::default'
 
       chef.json = {
-        resolver: {
-          search: 'vm.lymingtonprecision.co.uk lymingtonprecision.co.uk',
-          nameservers: %w(10.118.109.10 192.168.108.1 192.168.108.2)
+        resolvconf: {
+          search: %w(vm.lymingtonprecision.co.uk lymingtonprecision.co.uk),
+          nameserver: %w(10.118.109.10 10.0.2.3)
         }
       }
     }

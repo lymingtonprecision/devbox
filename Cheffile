@@ -1,6 +1,6 @@
 site "http://community.opscode.com/api/v1"
 
-cookbook 'resolver'
+cookbook 'resolvconf'
 cookbook 'dnsmasq'
 cookbook 'redisio'
 cookbook 'rabbitmq'
