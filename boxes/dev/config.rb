@@ -28,6 +28,7 @@ module Boxes; module Dev
           dnsmasq: {
             enable_dhcp: false,
             dns: {
+              server: %w(127.0.0.1 10.0.2.3)
               address: [
                 wildcard_addresses.call('dev', '10.118.109.10'),
                 wildcard_addresses.call('staging', '10.118.109.20')
